@@ -9,7 +9,7 @@ jobs:
   build:
     runs-on: ubuntu-latest
     env:
-      my_secret: ${{secretneu}}
+      my_secret: ${{secrets.ACCESS_TOKEN}}
 
     steps:
       - uses: actions/checkout@v3
@@ -27,14 +27,14 @@ jobs:
           mkdir web-deploy
           cd web-deploy
           #! Update with your Email ID associated with GitHub
-          git config --global wilfried.ifland@gmail.com <email ID>
+          git config --global user.email <email ID>
           #! Update with your username associated with GitHub
-          git config --global iwilfried <username>
+          git config --global user.name <username>
           git config --global init.defaultBranch main
           git init
           # the repository to push the deploy into
           #! Update the following with your username and repository
-          git remote add origin https://${{secretneu}}@github.com/iwilfried>/New-Flutter-Flashcard-Language.git
+          git remote add origin https://${{secrets.ACCESS_TOKEN}}@github.com/<username>/<repository>.git
           git fetch origin gh-pages
           git switch gh-pages
           # copy the build that is there in ROOT/build/web into ROOT/build/web-deploy
@@ -47,3 +47,4 @@ jobs:
           echo ""
           git commit -m "${{ github.event.head_commit.message }}"
           git push origin gh-pages
+          
